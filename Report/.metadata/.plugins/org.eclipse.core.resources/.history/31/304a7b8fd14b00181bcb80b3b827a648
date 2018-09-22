@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cantina" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="50faf732-1fb7-474f-9bb2-1c970044be5d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Cantina.xml"/>
+	<queryString language="SQL">
+		<![CDATA[select sum(valor) as Valor, sum(qtdp) as Quantidade, forma_pg as Forma_de_Pagamento from venda where forma_pg = 'Fiado' 
+ union select sum(valor) as Valor, sum(qtdp) as Quantidade, forma_pg as Forma_de_Pagamento from venda where forma_pg = 'Dinheiro'
+union select sum(valor) as Valor, sum(qtdp) as Quantidade, forma_pg as Forma_de_Pagamento from venda where forma_pg = 'Débito'
+union select sum(valor) as Valor, sum(qtdp) as Quantidade, forma_pg as Forma_de_Pagamento from venda where forma_pg = 'Crédito']]>
+	</queryString>
+	<field name="Valor" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Valor"/>
+	</field>
+	<field name="Quantidade" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Quantidade"/>
+	</field>
+	<field name="Forma_de_Pagamento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Forma_de_Pagamento"/>
+	</field>
+	<group name="Valor">
+		<groupExpression><![CDATA[$F{Valor}]]></groupExpression>
+	</group>
+	<group name="Quantidade">
+		<groupExpression><![CDATA[$F{Quantidade}]]></groupExpression>
+	</group>
+	<group name="Forma_de_Pagamento">
+		<groupExpression><![CDATA[$F{Forma_de_Pagamento}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="168" y="22" width="100" height="30" uuid="18130bc1-d439-4dbf-bab1-418c15a87dc8"/>
+				<text><![CDATA[Relatório resumido]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="579189ae-d442-4d5d-9003-13e7175df1c6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2ec4d058-dfef-41b2-8ddb-8811abeb5686"/>
+				</reportElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="0" width="100" height="30" uuid="cda8a1a2-53fb-464e-a169-aeafc6d25865">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a64a3d8b-c31f-4958-9762-3143ffee45a7"/>
+				</reportElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="100" height="30" uuid="506c69ce-8a04-4972-8c2e-891dbe9536e4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f88edd3e-4c71-4ec8-9a46-cc0ce9859fc9"/>
+				</reportElement>
+				<text><![CDATA[Forma_de_Pagamento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="855ba310-6df8-4092-9455-1a9c22a6c92a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2ec4d058-dfef-41b2-8ddb-8811abeb5686"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="0" width="100" height="30" uuid="282e9266-82c8-474b-9587-6fd5c255e74d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a64a3d8b-c31f-4958-9762-3143ffee45a7"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="100" height="30" uuid="8b195b22-9763-403d-8eed-c2e7d549d46f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f88edd3e-4c71-4ec8-9a46-cc0ce9859fc9"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Forma_de_Pagamento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
